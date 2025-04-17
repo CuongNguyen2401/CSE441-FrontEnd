@@ -3,5 +3,6 @@
     "axios",
     "tanstack",
     "zustand"
-  ]
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

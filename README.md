@@ -95,3 +95,139 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+# E-commerce Mobile App
+
+A React Native mobile application for e-commerce that connects to a Spring Boot backend.
+
+## Project Structure
+
+```
+src/
+├── assets/            # Images, fonts, and other static assets
+├── components/        # Reusable UI components
+├── config/            # Configuration files
+│   └── env.ts         # Environment configuration
+├── navigation/        # Navigation configuration
+│   ├── AppNavigator.tsx      # Main navigation setup
+│   └── helpers.ts       # Navigation type definitions
+├── screens/           # App screens
+├── services/          # API services
+│   ├── api.ts         # Base API configuration
+│   ├── authService.ts # Authentication service
+│   ├── cartService.ts # Cart service
+│   ├── AppNavigator.tsx      # Services export
+│   ├── orderService.ts# Order service
+│   └── productService.ts # Product service
+├── store/             # State management
+│   ├── authStore.ts   # Authentication state
+│   ├── cartStore.ts   # Cart state
+│   ├── index.ts       # Store exports
+│   └── productStore.ts# Product state
+└── utils/             # Utility functions
+```
+
+## Features
+
+- User authentication (login, register, logout)
+- Product browsing and searching
+- Product categories
+- Shopping cart management
+- Order processing
+- User profile management
+
+## Tech Stack
+
+- React Native
+- TypeScript
+- React Navigation for navigation
+- Axios for API requests
+- React Query for data fetching and caching
+- Zustand for state management
+- React Hook Form for form handling
+- Yup for form validation
+
+## Backend Requirements
+
+The app is designed to work with a Spring Boot backend that provides the following API endpoints:
+
+### Authentication
+- POST /api/auth/login - Login with email and password
+- POST /api/auth/register - Register a new user
+- POST /api/auth/logout - Logout user
+- GET /api/auth/me - Get current user profile
+- POST /api/auth/refresh - Refresh authentication token
+
+### Products
+- GET /api/products - Get products with pagination and filtering
+- GET /api/products/{id} - Get product by ID
+- GET /api/products/featured - Get featured products
+
+### Cart
+- GET /api/cart - Get current user's cart
+- POST /api/cart/items - Add product to cart
+- PUT /api/cart/items/{id} - Update cart item quantity
+- DELETE /api/cart/items/{id} - Remove item from cart
+- DELETE /api/cart - Clear cart
+- POST /api/cart/coupon - Apply coupon to cart
+- DELETE /api/cart/coupon - Remove coupon from cart
+
+### Orders
+- POST /api/orders - Create a new order
+- GET /api/orders - Get all orders with pagination
+- GET /api/orders/{id} - Get order by ID
+- POST /api/orders/{id}/cancel - Cancel order
+
+### User
+- GET /api/user/addresses - Get user addresses
+- POST /api/user/addresses - Add a new address
+- PUT /api/user/addresses/{id} - Update an address
+- DELETE /api/user/addresses/{id} - Delete an address
+- POST /api/user/addresses/{id}/default - Set default address
+
+## Setup Instructions
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+   or
+   ```
+   yarn install
+   ```
+   or
+   ```
+   pnpm install
+   ```
+
+3. Configure the backend URL:
+   - Open `src/config/env.ts`
+   - Update the `apiUrl` for each environment
+
+4. Run the app:
+   ```
+   npm run android
+   ```
+   or
+   ```
+   npm run ios
+   ```
+
+## Development
+
+### Environment Configuration
+
+The app supports different environments (development, staging, production). You can configure the environment settings in `src/config/env.ts`.
+
+### Adding New Screens
+
+1. Create a new screen component in the `src/screens` directory
+2. Add the screen to the appropriate navigator in `src/navigation/AppNavigator.tsx`
+3. Add the screen to the navigation types in `src/navigation/helpers.ts`
+
+### API Integration
+
+To add a new API endpoint:
+1. Add the corresponding method to the appropriate service in the `src/services` directory
+2. If needed, create a new store in the `src/store` directory to manage the state related to the new endpoint
