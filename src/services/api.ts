@@ -1,4 +1,4 @@
-import axiosHttp from "../utils/http.ts";
+import axiosHttp from '../utils/http.ts';
 
-const api = axiosHttp
+const api = axiosHttp;
 export default api;
